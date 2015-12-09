@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE addressbook SYSTEM "addressbook.dtd">
+<addressbook of="Jennifer">
+	<section for="childhood">
+		<person type="friend">
+			<name>Anna</name>
+			<tel type="private">+(00)49-080-111</tel>
+			<mail type="private">anna@example.org</mail>
+			<birthday year="1991" month="11" day="21" />
+		</person>
+		<person type="friend">
+			<name>Maria</name>
+			<tel type="private">+(00)49-080-192</tel>
+			<birthday year="1992" month="9" day="20" />
+		</person>
+		<person type="dad">
+			<tel type="private">+(00)49-080-921</tel>
+			<birthday year="1966" month="3" day="4" />
+		</person>
+		<person type="mom">
+			<tel type="private">+(00)49-080-563</tel>
+			<birthday year="1965" month="1" day="12" />
+		</person>
+		<person type="brother">
+			<name>John</name>
+			<tel type="private">+(00)49-080-284</tel>
+			<mail type="private">john@example.org</mail>
+			<birthday year="1990" month="7" day="30" />
+		</person>
+	</section>
+	<section for="college">
+		<person type="roommate">
+			<name>Miriam</name>
+			<tel type="private">+(00)49-080-564</tel>
+			<mail type="private">miriam@example.org</mail>
+			<mail type="business">miriam@bigbusiness.org</mail>
+			<birthday year="1995" month="12" day="24" />
+		</person>
+		<person type="roommate">
+			<name>Tina</name>
+			<tel type="private">+(00)49-080-199</tel>
+			<mail type="private">tina@example.org</mail>
+			<birthday year="1990" month="5" day="9" />
+		</person>
+	</section>
+	<section for="work">
+		<person type="coworker">
+			<name>Andrew</name>
+			<tel type="business">+(00)49-081-11</tel>
+			<mail type="business">andrew@acme.com</mail>
+			<birthday month="11" day="29" />
+		</person>
+		<person type="coworker">
+			<name>Thomas</name>
+			<tel type="business">+(00)49-081-12</tel>
+			<mail type="business">thomas@acme.com</mail>
+			<birthday month="1" day="19" />
+		</person>
+		<person type="coworker">
+			<name>Aayan</name>
+			<tel type="business">+(00)49-081-13</tel>
+			<mail type="business">aayan@acme.com</mail>
+			<birthday month="2" day="24" />
+		</person>
+	</section>
+</addressbook>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!--
+        As straight forward as the DTD rule for the root element. A major
+        difference is, that attributes are defined inside the definition of
+        the element (in DTD there is an extra "tag" for "ATTLIST"). Also
+        XSD is more versatile concerning data types. The relation between
+        elements (how many occurances) is here defined bei two attributes
+        (minOccurs and maxOccurs), but in DTD the operators ?, * and + are
+        used. For this document there is no difference. But when only a finite
+        number of elements is needed this can be expressed in XSD easier than
+        in DTD. Also the datatypes for the attributes are defined in XSD and
+        only very rough defined in DTD.
+
+        A big other difference is that XSD assumes an element with one or more
+        subelements as a "complex type".
+
+        So the following element describes the same as 
+
+            <!ELEMENT addressbook (section+)>
+            <!ATTLIST addressbook 
+                of          CDATA #REQUIRED
+            >
+        
+        describes in the DTD. For this example here a DTD is a shorter way to
+        write down. But not only quantity matters.
+    -->
+    <xs:element name="addressbook">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="section" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="of" type="xs:string" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <!--
+        Same explanations as for the last element apply here.
+    -->
+    <xs:element name="section">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="person" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="for" type="xs:string" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <!--
+        Also this element is described in the same way as the elements
+        before.
+
+        Please note, that a person element has an required type attribute
+        with a specific value. The values are observed by a custom created
+        type, called "person" - see bellow. In XSD custom (data-)types can
+        be created in contrast to DTD.
+    -->
+    <xs:element name="person">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="name" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="tel" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="mail" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="birthday" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute name="type" type="person" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <!-- 
+        This is a custom data type or pretty much an enum. In DTD this
+        was defined by:
+
+            (friend|mom|dad|brother|roommate|coworker)
+    -->
+    <xs:simpleType name="person">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="friend" />
+            <xs:enumeration value="mom" />
+            <xs:enumeration value="dad" />
+            <xs:enumeration value="brother" />
+            <xs:enumeration value="roommate" />
+            <xs:enumeration value="coworker" />
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- Simple single element -->
+    <xs:element name="name" type="xs:string" />
+
+    <!-- 
+        Telephone and mail are written in the same way as the other
+        elements before. A difference to DTD is, that both elements
+        can use the same enum data type for the type attribute. In 
+        DTD one must specify for each element the allowed enum
+        values.
+    -->
+    <xs:element name="tel">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="type" type="scope" use="required" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="mail">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="type" type="scope" use="required" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Same procedure as data type "person" -->
+    <xs:simpleType name="scope">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="private" />
+            <xs:enumeration value="business" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- And the birthday element ... nothing new ... -->
+    <xs:element name="birthday">
+        <xs:complexType>
+            <xs:attribute name="year" type="xs:integer" />
+            <xs:attribute name="month" type="xs:integer" use="required" />
+            <xs:attribute name="day" type="xs:integer" use="required" />
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>

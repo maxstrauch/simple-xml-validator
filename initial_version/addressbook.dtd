@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	The root element of the document is the addressbook
+	element. It must contain the attribute "of" containing
+	the owner name of this address book.
+-->
+<!ELEMENT addressbook (section+)>
+<!ATTLIST addressbook 
+	of 			CDATA #REQUIRED
+>
+	
+<!--
+	The address book is divided into "sections" for different
+	purposes. Each section must specifiy it's purpose.
+-->
+<!ELEMENT section (person*)>
+<!ATTLIST section 
+	for 	CDATA #REQUIRED
+>
+
+<!--
+	A person is the basic address book element. It contains all
+	further data and must have a type from the list bellow.
+-->
+<!ELEMENT person (name?,tel*,mail*,birthday?)>
+<!ATTLIST person 
+	type 	(friend|mom|dad|brother|roommate|coworker) #REQUIRED
+>
+
+<!-- The name of the person -->
+<!ELEMENT name (#PCDATA)>
+
+<!-- 
+	The telephone number. Using the "type" attribute the
+	type of the telephone number (either private or for
+	work) can be specified.
+-->
+<!ELEMENT tel (#PCDATA)>
+<!ATTLIST tel 
+	type 	(private|business) #REQUIRED
+>
+
+<!-- 
+	The electronic mail address. Using the "type" attribute 
+	the type of the mail address (either private or for
+	work) can be specified.
+-->
+<!ELEMENT mail (#PCDATA)>
+<!ATTLIST mail 
+	type 	(private|business) #REQUIRED
+>
+
+<!--
+	The birthday of the person. Since not all persons like
+	to tell their actually birth year (and since it is not
+	nessesary for birthday congrats) this argument is not
+	required.
+-->
+<!ELEMENT birthday EMPTY>
+<!ATTLIST birthday 
+	year 	CDATA #IMPLIED
+	month 	CDATA #REQUIRED
+	day 	CDATA #REQUIRED
+>
