@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT addressbook (person*)>
+<!ATTLIST addressbook 
+	of 	CDATA #REQUIRED
+>
+<!ELEMENT person (name?)>
+<!ATTLIST person 
+	type 	(friend|mom|dad|brother|roommate|coworker) #REQUIRED
+>
+<!ELEMENT name (#PCDATA)>

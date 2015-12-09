@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE addressbook SYSTEM "addressbook.dtd">
+<addressbook of="Jennifer">
+	<person type="friend">
+		<name>Anna</name>
+
+		<!-- Bad Mistake -->
+		<foo>Hallo</foo>
+		<!-- !!!!!!!!!!! -->
+		
+	</person>
+</addressbook>

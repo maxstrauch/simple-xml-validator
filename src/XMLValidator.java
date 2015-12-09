@@ -144,8 +144,9 @@ public class XMLValidator {
     }
     
     static void apply() {
+        String str = "";
         logging.setText(
-                "<html><head>" +
+                str = "<html><head>" +
                     "<style type=\"text/css\">" + 
                         "h1, h2 {font-family: Arial, sans-serif;}" + 
                         "#val {color:green;background-color:#E5FFE5;}" +
@@ -166,8 +167,8 @@ public class XMLValidator {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout(7, 7));
         
-        final JTextField xmlDoc = new JTextField("/Users/maximilianstrauch/Downloads/person.xml");
-        final JTextField xmlSchema = new JTextField("/Users/maximilianstrauch/Downloads/person.xsd");
+        final JTextField xmlDoc = new JTextField();
+        final JTextField xmlSchema = new JTextField();
         
         JButton openDoc = new JButton(new AbstractAction("Open XML ...") {
 
@@ -216,10 +217,11 @@ public class XMLValidator {
                         log("<h1 id=\"inval\">INVALID.</h1>");
                     }
                 } catch (Exception ex) {
-                    log("<h1 id=\"inval\">INVALID.</h1><pre>");
+                    log("<h1 id=\"inval\">INVALID.</h1>");
                     warn("Program exception caught during validation:\n");
-                    warn(exceptionToString(ex));
-                    warn("\nStop.\n</pre>");
+                    String exStr = exceptionToString(ex);
+                    warn("<code>" + (exStr == null ? "N/A" : exStr.trim()) + "</code>");
+                    warn("Stop.");
                 }
                 
                 logging.setCaretPosition(0);
